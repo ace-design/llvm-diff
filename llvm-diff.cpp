@@ -25,9 +25,6 @@
 #include <string>
 #include <utility>
 
-#include <iostream>
-#include "llvm/IR/DebugInfo.h"
-
 using namespace llvm;
 
 /// Reads a module from a file.  On error, messages are written to stderr

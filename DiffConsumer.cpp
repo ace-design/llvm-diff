@@ -219,7 +219,7 @@ void DiffConsumer::logd(const DiffLogBuilder &Log) {
 
       indent();
       out << '<';
-      Log.getLeft(I)->print(dbgs()); dbgs() << '\n';
+      Log.getLeft(I)->print(out); out << '\n';
 
       //printValue(Log.getLeft(I), true);
       break;
@@ -231,7 +231,7 @@ void DiffConsumer::logd(const DiffLogBuilder &Log) {
 
       indent();
       out << '>';
-      Log.getRight(I)->print(dbgs()); dbgs() << '\n';
+      Log.getRight(I)->print(out); out << '\n';
 
       //printValue(Log.getRight(I), false);
       break;
