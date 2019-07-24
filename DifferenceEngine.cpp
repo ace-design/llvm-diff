@@ -507,6 +507,34 @@ public:
 
     tryUnify(&*L->begin(), &*R->begin());
     processQueue();
+
+    // Check all blocks that haven't been compared.
+    DenseSet<BasicBlock *> LeftOnly;
+    DenseSet<BasicBlock *> RightOnly;
+
+    for (auto &it : L->getBasicBlockList())
+    {
+      LeftOnly.insert(&it);
+    }
+    for (auto &it : R->getBasicBlockList())
+    {
+      RightOnly.insert(&it);
+    }
+
+    for (auto it : Blocks)
+    {
+      LeftOnly.erase(it.getFirst());
+      RightOnly.erase(it.getSecond());
+    }
+
+    for (auto it : LeftOnly)
+    {
+      Engine.logf("left block %l: " + std::to_string(it->size())) << it;
+    }
+    for (auto it : RightOnly)
+    {
+      Engine.logf("right block %l: " + std::to_string(it->size())) << it;
+    }
   }
 };
 
